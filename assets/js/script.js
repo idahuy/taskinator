@@ -1,9 +1,9 @@
 var formE1 = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 var taskIdCounter = 0;
-var pageContentE1 = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
+var pageContentE1 = document.querySelector("#page-content");
 
 var taskFormHandler = function(event) {
     event.preventDefault();
@@ -16,10 +16,10 @@ var taskFormHandler = function(event) {
     return false;
   }
 
-    var isEdit = formEl.hasAttribute("data-task-id");
+    var isEdit = formE1.hasAttribute("data-task-id");
     // has data attribute, so get task id and call function to complete edit process
     if (isEdit) {
-      var taskId = formEl.getAttribute("data-task-id");
+      var taskId = formE1.getAttribute("data-task-id");
       completeEditTask(taskNameInput, taskTypeInput, taskId);
     } 
     // no data attribute, so create object as normal and pass to createTaskEl function
@@ -45,7 +45,7 @@ var completeEditTask = function(taskName, taskType, taskId) {
 
   alert("Task Updated!");
 
-  formEl.removeAttribute("data-task-id");
+  formE1.removeAttribute("data-task-id");
   document.querySelector("#save-task").textContent = "Add Task";
 };
 
@@ -148,7 +148,7 @@ var editTask = function(taskId) {
   document.querySelector("input[name='task-name']").value = taskName;
   document.querySelector("select[name='task-type']").value = taskType;
   document.querySelector("#save-task").textContent = "Save Task";
-  formEl.setAttribute("data-task-id", taskId);
+  formE1.setAttribute("data-task-id", taskId);
 };
 
 var taskStatusChangeHandler = function(event) {
@@ -178,5 +178,6 @@ var deleteTask = function(taskId) {
   taskSelected.remove();
 };
 formE1.addEventListener("submit", taskFormHandler);
+
 pageContentE1.addEventListener("click", taskButtonHandler);
-pageContentEl.addEventListener("change", taskStatusChangeHandler);
+pageContentE1.addEventListener("change", taskStatusChangeHandler);
